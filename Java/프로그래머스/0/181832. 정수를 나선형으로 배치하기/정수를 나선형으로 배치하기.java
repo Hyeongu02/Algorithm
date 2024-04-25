@@ -37,7 +37,7 @@ class Solution {
 				}
 			}
 			else if(direction==3) {
-				if(row==0||answer[row-1][col]!=0){
+				if(answer[row-1][col]!=0){
 					direction=0;
 					col++;
 				}
