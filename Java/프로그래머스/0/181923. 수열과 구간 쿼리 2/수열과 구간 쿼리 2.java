@@ -14,15 +14,15 @@ class Solution {
 			}
 			tmp[e-s+1]=k;
 			Arrays.sort(tmp);
-			for(int m=0;m<tmp.length;m++) {
-				if(tmp[m]>queries[i][2]) {
-					answer[i]=tmp[m];
+			int result=-1;
+			Arrays.sort(tmp);
+			for(int m:tmp) {
+				if(m>k) {
+					result = m;
 					break;
 				}
-				else{
-					answer[i]=-1;
-				}
 			}
+			answer[i]=result;
 		}
         return answer;
     }
