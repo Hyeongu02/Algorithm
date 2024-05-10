@@ -6,7 +6,6 @@ class Solution {
 		Arrays.sort(score);
 		int re=score.length/m;
 		for(int i=score.length-m;i>=0;i -=m) {
-			
 			sum +=score[i]*m;
 			result +=sum;
 			sum=0;
