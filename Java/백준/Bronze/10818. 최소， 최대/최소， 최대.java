@@ -1,15 +1,17 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
 		Scanner in=new Scanner(System.in);
 		int n=in.nextInt();
-		int[] input=new int[n];
+		int input=0;
+		int max=-1000001;
+		int min= 1000001;
 		for(int i=0;i<n;i++) {
-			input[i]=in.nextInt();
+			input=in.nextInt();
+			if(input>max) max=input;
+			if(input<min) min=input;
 		}
-		Arrays.sort(input);
-		System.out.printf("%d %d",input[0],input[n-1]);
+		System.out.printf("%d %d",min,max);
 	}
-}
+} 
