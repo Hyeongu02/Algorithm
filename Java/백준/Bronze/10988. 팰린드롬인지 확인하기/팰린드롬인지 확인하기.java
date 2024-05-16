@@ -3,14 +3,16 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		Scanner in =new Scanner(System.in);
-		String input=in.nextLine();
-		int len=input.length();
-		for(int i=0;i<len/2;i++) {
-				if(input.charAt(i)!=input.charAt(len-i-1)) {
-					System.out.println("0");
-					return;
-				}
+		String n=in.nextLine();
+		in.close();
+		int len=n.length()/2;
+		boolean t=true;
+		for(int i=0;i<len;i++) {
+			if(n.charAt(i)!=n.charAt(n.length()-i-1)) {
+				t=false;
+			}
 		}
-		System.out.print("1");
+		if(t==true) System.out.print("1");
+		else System.out.print("0");
 	}
-}
+} 
