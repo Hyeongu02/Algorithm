@@ -14,6 +14,7 @@ public class Main {
 				arr[j-1]=c;
 			}
 		}
+        in.close();
 		for(int i=0; i<n;i++) {
 			System.out.print(arr[i]+" ");
 		}
