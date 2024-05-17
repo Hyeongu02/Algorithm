@@ -1,34 +1,29 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
-		Scanner in =new Scanner(System.in);
-		int N= in.nextInt();
-		int M= in.nextInt();
-		int[][] A=new int[N][M];
-		int[][] B=new int[N][M];
-		int[][] result=new int[N][M];
-		for(int i=0;i<N;i++) {
-			for(int j=0;j<M;j++) {
-				A[i][j]=in.nextInt();
+		Scanner in= new Scanner(System.in);
+		int n=in.nextInt(); //배열의 크기 받기
+		int m=in.nextInt();
+		int[][] arr= new int[n][m];
+		for(int i = 0; i < n; i++) { //배열 초기화
+			for(int j = 0; j < m; j++) {
+				arr[i][j] = 0; 
 			}
 		}
-		for(int i=0;i<N;i++) {
-			for(int j=0;j<M;j++) {
-				B[i][j]=in.nextInt();
+		for(int i=0;i<2;i++) { //값 넣기
+			for(int j=0;j<n;j++) {
+				for(int k=0;k<m;k++) {
+					arr[j][k]+=in.nextInt();
+				}
 			}
 		}
-		for(int i=0;i<N;i++) {
-			for(int j=0;j<M;j++) {
-				result[i][j]=A[i][j]+B[i][j];
-			}
-		}
-		for(int i=0;i<N;i++) {
-			for(int j=0;j<M;j++) {
-				System.out.print(result[i][j]+" ");
+		in.close();
+		for(int j=0;j<n;j++) { //출력
+			for(int k=0;k<m;k++) {
+				System.out.print(arr[j][k]+" ");
 			}
 			System.out.println();
 		}
 	}
-}
+} 
