@@ -6,10 +6,12 @@ public class Main {
 		int a= in.nextInt();
 		int b= in.nextInt();
 		int tmp=b;
+		int sum=0;
 		for(int i=1;i<=b;i*=10) {
 			System.out.println(a*(tmp%10));
+			sum+=a*(tmp%10)*i;
 			tmp/=10;
 		}
-		System.out.println(a*b);
+		System.out.println(sum);
 	}
 }
