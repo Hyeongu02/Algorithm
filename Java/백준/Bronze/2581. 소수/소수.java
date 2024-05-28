@@ -6,34 +6,34 @@ public class Main {
         int m = in.nextInt();
         int n = in.nextInt();
         in.close();
-        
+
+        int sum = 0;
+        int min = -1;
         boolean[] prime = new boolean[n + 1];
-        // 초기값 설정: 모든 수를 소수로 간주 (false가 소수를 의미)
-        for (int i = 2; i <= n; i++) {
-            prime[i] = true;
-        }
         
-        // 에라토스테네스의 체
+        // Initialize 0 and 1 as not prime
+        prime[0] = true;
+        prime[1] = true;
+        
+        // Sieve of Eratosthenes
         for (int i = 2; i * i <= n; i++) {
-            if (prime[i]) {
+            if (!prime[i]) {
                 for (int j = i * i; j <= n; j += i) {
-                    prime[j] = false;
+                    prime[j] = true;
                 }
             }
         }
-        
-        int sum = 0;
-        int min = n + 1;
-        
+
+        // Sum up primes and find the minimum prime in range [m, n]
         for (int i = m; i <= n; i++) {
-            if (prime[i]) {
+            if (!prime[i]) {
                 sum += i;
-                if (min == n + 1) {
+                if (min == -1) {
                     min = i;
                 }
             }
         }
-        
+
         if (sum == 0) {
             System.out.println(-1);
         } else {
