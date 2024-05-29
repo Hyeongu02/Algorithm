@@ -2,21 +2,24 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
-        int T = scanner.nextInt();
-        
-        for (int t = 0; t < T; t++) {
-            int H = scanner.nextInt();
-            int W = scanner.nextInt();
-            int N = scanner.nextInt();
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        for (int i = 0; i < t; i++) {
+            int h = in.nextInt();
+            int w = in.nextInt();
+            int n = in.nextInt();
             
-            int floor = (N % H == 0) ? H : N % H;
-            int roomNumber = (N % H == 0) ? (N / H) : (N / H + 1);
+            int floor, roomNumber;
+            if (n % h == 0) {
+                floor = h;
+                roomNumber = n / h;
+            } else {
+                floor = n % h;
+                roomNumber = n / h + 1;
+            }
             
             System.out.printf("%d%02d\n", floor, roomNumber);
         }
-        
-        scanner.close();
+        in.close();
     }
 }
