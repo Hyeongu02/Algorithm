@@ -6,8 +6,7 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuffer sb= new StringBuffer();
 		int N=Integer.parseInt(br.readLine()); 
-		int tmp=N;
-		for(int i=2;i*i<=tmp;i++) {
+		for(int i=2;i*i<=N;i++) {
 			while(N%i==0) {
 				sb.append(i).append('\n');
 				N/=i;
