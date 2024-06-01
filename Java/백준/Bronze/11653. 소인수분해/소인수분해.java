@@ -7,16 +7,13 @@ public class Main {
 		StringBuffer sb= new StringBuffer();
 		int N=Integer.parseInt(br.readLine()); 
 		int tmp=N;
-		while(N>0) {
-			for(int i=2;i<=tmp;i++) {
-				if(N%i==0) {
-					N/=i;
-					sb.append(i).append('\n');
-					break;
-				}
+		for(int i=2;i*i<=tmp;i++) {
+			while(N%i==0) {
+				sb.append(i).append('\n');
+				N/=i;
 			}
-			if(N==1)break;
 		}
+		if(N!=1) sb.append(N);
 		System.out.println(sb);
 	}
 }
