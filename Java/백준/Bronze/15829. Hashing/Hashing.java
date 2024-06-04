@@ -7,11 +7,13 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int L=Integer.parseInt(br.readLine());
 		String str=br.readLine();
-		int sum=0;
+		Long result=0L;
+		Long pow=1L;
 		for(int i=0;i<L;i++) {
-			sum+=(int)((str.charAt(i)-96)*Math.pow(31, i)); 
+			result+=(str.charAt(i)-96)*pow;
+			pow=pow*31%1234567891;
 		}
-		sum%=1234567891;
-		System.out.println(sum);
+		result %=1234567891;
+		System.out.println(result);
 	}
 }
