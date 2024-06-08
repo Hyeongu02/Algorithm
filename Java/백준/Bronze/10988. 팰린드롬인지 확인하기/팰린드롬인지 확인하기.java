@@ -1,18 +1,11 @@
-import java.util.Scanner;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 public class Main {
-	public static void main(String[] args) {
-		Scanner in =new Scanner(System.in);
-		String n=in.nextLine();
-		in.close();
-		int len=n.length()/2;
-		boolean t=true;
-		for(int i=0;i<len;i++) {
-			if(n.charAt(i)!=n.charAt(n.length()-i-1)) {
-				t=false;
-			}
-		}
-		if(t==true) System.out.print("1");
-		else System.out.print("0");
+	public static void main(String[] args) throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		StringBuffer sb= new StringBuffer(br.readLine());
+		StringBuffer sbReverse=new StringBuffer(sb);
+		System.out.println(sb.toString().equals(sbReverse.reverse().toString())?"1":"0");
 	}
-} 
+}
