@@ -1,29 +1,25 @@
-import java.util.Scanner;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 public class Main {
-	public static void main(String[] args) {
-		Scanner in =new Scanner(System.in);
-		int n=in.nextInt();
-		int count=n;
-		in.nextLine();
-		for(int i=0;i<n;i++) {
-			boolean flag=false;
-			String word=in.nextLine();
-			int[] arr=new int[26];
-			arr[word.charAt(0)-97]++;
-			for(int j=1;j<word.length();j++) {
-				if(word.charAt(j)!=word.charAt(j-1)) {
-					flag=true;
-				}
-				if(flag==true&& arr[word.charAt(j)-97]>0) {
-					count--;
-					break;
+	public static void main(String[] args) throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int count=0;
+		int n=Integer.parseInt(br.readLine());
+		a :for(int i=0;i<n;i++) {
+			boolean[] apb=new boolean[26];
+			String str=br.readLine();
+			int tmp=-1;
+			for(int j=0;j<str.length();j++){
+				if(apb[str.charAt(j)-97]==false) {
+					apb[str.charAt(j)-97]=true;
+					tmp=str.charAt(j)-97;
 				}else {
-					arr[word.charAt(j)-97]++;
-					flag=false;
+					if(str.charAt(j)-97!=tmp) continue a;
 				}
 			}
+			count++;
 		}
-		System.out.print(count);
+		System.out.println(count);
 	}
-} 
+}
