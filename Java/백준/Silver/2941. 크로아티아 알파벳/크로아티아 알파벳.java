@@ -7,7 +7,7 @@ public class Main {
 		String[] target= {"c=","c-","dz=","d-","lj","nj","s=","z="};
 		String str=br.readLine();
 		for(int i=0;i<target.length;i++) {
-			str=str.replaceAll(target[i], "0");
+			str=str.replace(target[i], "0");
 		}
 		System.out.println(str.length());
 	}
