@@ -4,15 +4,11 @@ import java.io.InputStreamReader;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-		String str=br.readLine();
-		br.close();
-		int[] arr =new int[26];
-		for(int i=0;i<str.length();i++){
-			if(str.charAt(i)>='a'&&str.charAt(i)<='z') {
-				arr[str.charAt(i)-97]++;
-			}else if(str.charAt(i)>='A'&&str.charAt(i)<='Z') {
-				arr[str.charAt(i)-65]++;
-			}
+		int c;
+		int[] arr=new int[26];
+		while((c=br.read())>64) {
+			if(c<91) arr[c-65]++;
+			else arr[c-97]++;
 		}
 		int max=-1;
 		int maxIndex=-1;
