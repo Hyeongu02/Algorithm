@@ -1,53 +1,23 @@
-import java.util.Scanner;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 public class Main {
-	public static void main(String[] args) {
-		Scanner in= new Scanner(System.in);
-		double gpa=0.0;
-		int sum=0;
+	public static void main(String[] args) throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		double sum=0;
+		int credit=0;
 		for(int i=0;i<20;i++) {
-			String input=in.nextLine();
-			String[] text=input.split(" ");
-			double graduate=Double.valueOf(text[1]);
-			String gradeText=text[2];
-			double grade=0;
-			switch (gradeText) {
-			case "A+":
-				grade=4.5;
-				break;
-			case "A0":
-				grade=4.0;
-				break;
-			case "B+":
-				grade=3.5;
-				break;
-			case "B0":
-				grade=3.0;
-				break;
-			case "C+":
-				grade=2.5;
-				break;
-			case "C0":
-				grade=2.0;
-				break;
-			case "D+":
-				grade=1.5;
-				break;
-			case "D0":
-				grade=1.0;
-				break;
-			case "F":
-				grade=0.0;
-				break;
-			case "P":
-				graduate=0;
-				break;
+			String[] str=br.readLine().split(" ");
+			if(str[2].equals("P")) continue;
+			if(str[2].equals("F")){
+				credit+=str[1].charAt(0)-'0';
+				continue;
 			}
-			gpa +=grade*graduate;
-			sum+=graduate;
+			double grade=69-str[2].charAt(0);
+			if(str[2].charAt(1)=='+') grade +=0.5;
+			sum += (str[1].charAt(0)-'0') *grade;
+			credit+=str[1].charAt(0)-'0';
 		}
-		in.close();
-		gpa /=sum;
-		System.out.print(gpa);
+		System.out.println(sum/credit);
 	}
-} 
+}
