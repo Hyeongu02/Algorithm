@@ -1,30 +1,30 @@
-import java.util.Scanner;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 public class Main {
-	public static void main(String[] args) {
-		Scanner in =new Scanner(System.in);
-		String input=in.nextLine();
-		in.close();
-		int[] arr= new int[26];
-		for(int i=0;i<input.length();i++) {
-			if (input.charAt(i)<='Z') {
-				arr[input.charAt(i)-65]++;
-			}
-			else {
-				arr[input.charAt(i)-97]++;
+	public static void main(String[] args) throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		int[] arr =new int[26];
+		String str=br.readLine();
+		for(int i=0;i<str.length();i++){
+			if(str.charAt(i)>='a'&&str.charAt(i)<='z') {
+				arr[str.charAt(i)-97]++;
+			}else if(str.charAt(i)>='A'&&str.charAt(i)<='Z') {
+				arr[str.charAt(i)-65]++;
 			}
 		}
-		int max=-1,max_i=0,count=0;
-		for(int i=0;i<26;i++) {
-			if(arr[i]>max) {
+		int max=-1;
+		int maxIndex=-1;
+		int count=0;
+		for(int i=0;i<26;i++){
+			if(max<arr[i]) {
 				max=arr[i];
-				max_i=i;
+				maxIndex=i;
 				count=0;
-			}
-			else if(arr[i]==max) {
+			}else if(max==arr[i]) {
 				count++;
 			}
 		}
-		System.out.print((count>0)?"?":(char)(max_i+65));
+		System.out.println((count>0)?"?":(char)(maxIndex+65));
 	}
-} 
+}
