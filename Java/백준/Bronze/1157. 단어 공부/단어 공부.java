@@ -4,8 +4,9 @@ import java.io.InputStreamReader;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-		int[] arr =new int[26];
 		String str=br.readLine();
+		br.close();
+		int[] arr =new int[26];
 		for(int i=0;i<str.length();i++){
 			if(str.charAt(i)>='a'&&str.charAt(i)<='z') {
 				arr[str.charAt(i)-97]++;
