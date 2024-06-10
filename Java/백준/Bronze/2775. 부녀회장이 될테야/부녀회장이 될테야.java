@@ -26,5 +26,7 @@ public class Main {
 			bw.append(Integer.toString(room[k][n-1])+'\n');
 		}
 		bw.flush();
+		br.close();
+		bw.close();
 	}
 }
