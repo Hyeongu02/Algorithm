@@ -15,12 +15,10 @@ public class Main {
 			for(int j=0;j<n;j++) {
 				room[0][j]=j+1;
 			}
-			for(int j=1;j<k+1;j++) {
-				room[j][0]=1;
-			}
 			for(int a=1;a<k+1;a++) {
-				for(int b=1;b<n;b++) {
-					room[a][b]=room[a-1][b]+room[a][b-1];
+				for(int b=0;b<n;b++) {
+					if (b==0) room[a][0]=1;
+					else room[a][b]=room[a-1][b]+room[a][b-1];
 				}
 			}
 			bw.append(Integer.toString(room[k][n-1])+'\n');
