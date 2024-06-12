@@ -1,11 +1,12 @@
-import java.util.Collections;
+import java.util.Arrays;
 class Solution {
     public String solution(String s) {
         StringBuffer sb=new StringBuffer();
-		int[] arr=s.chars().boxed().sorted(Collections.reverseOrder()).mapToInt(Integer::intValue).toArray();
+		int[] arr=s.chars().toArray();
+		Arrays.sort(arr);
 		for(int i:arr) {
 			sb.append((char)i);
 		}
-        return sb.toString();
+        return sb.reverse().toString();
     }
 }
