@@ -13,8 +13,10 @@ public class Main {
 		}
 	
 		Arrays.sort(member,(arr1, arr2) ->Integer.compare(Integer.parseInt(arr1[0]), Integer.parseInt(arr2[0])));
+		StringBuilder sb= new StringBuilder();
 		for(int i=0;i<n;i++) {
-			System.out.println(member[i][0]+" "+member[i][1]);
+			sb.append(member[i][0]).append(' ').append(member[i][1]).append('\n');
 		}
+		System.out.println(sb);
 	}
 }
