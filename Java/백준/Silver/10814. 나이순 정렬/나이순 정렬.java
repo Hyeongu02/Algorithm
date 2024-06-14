@@ -1,14 +1,11 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
 public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException{
 		BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw= new BufferedWriter(new OutputStreamWriter(System.out));
 		int n=Integer.parseInt(br.readLine());
 		StringBuilder[] sb= new StringBuilder[201];
 		for (int i = 0; i < sb.length; i++) {
@@ -19,10 +16,10 @@ public class Main {
 			int age=Integer.parseInt(st.nextToken());
 			sb[age].append(age).append(' ').append(st.nextToken()).append('\n');
 		}
+		StringBuilder sb2= new StringBuilder();
 		for(int i=0;i<sb.length;i++) {
-			bw.append(sb[i]);
+			sb2.append(sb[i]);
 		}
-		bw.flush();
-		bw.close();
+		System.out.println(sb2.toString());
 	}
 }
