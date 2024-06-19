@@ -1,28 +1,28 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-	public static void main(String[] args) {
-		Scanner in= new Scanner(System.in);
-		String[] n= new String[5];
+	public static void main(String[] args) throws NumberFormatException, IOException{
+		BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+		String[] str=new String[5];
 		int max=0;
-		for(int i = 0; i < 5; i++) { 
-			n[i]=in.nextLine();
-			if(n[i].length()>max) {
-				max=n[i].length(); //입력된 단어중 가장 긴 단어의 길이 저장
+		for(int i=0;i<5;i++) { //입력 + 문자열의 최대길이 찾기
+			str[i]=br.readLine();
+			if(str[i].length()>max) max=str[i].length();
+		}
+		char[][] answer=new char[5][max]; //단어를 2차원 char에 저장
+		for(int i=0;i<5;i++) {
+			for(int j=0;j<str[i].length();j++) {
+				answer[i][j]=str[i].charAt(j);
 			}
 		}
-		in.close();
-		
-		char[][] text=new char[5][max];
-		for(int i=0;i<5;i++) { //단어를 2차원 char에 저장
-			for(int j=0;j<n[i].length();j++) {
-				text[i][j]=n[i].charAt(j);
-			}
-		}
-		for(int i=0;i<max;i++) { //출력
+		StringBuilder sb=new StringBuilder();
+		for(int i=0;i<max;i++) { //출력 - char배열의 기본값 '\u0000'
 			for(int j=0;j<5;j++) {
-				if (text[j][i]!='\u0000') System.out.print(text[j][i]);
+				if(answer[j][i]!='\u0000') sb.append(answer[j][i]); 
 			}
 		}
+		System.out.println(sb);	
 	}
-} 
+}
