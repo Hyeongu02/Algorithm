@@ -1,29 +1,30 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class Main {
-	public static void main(String[] args) {
-		Scanner in= new Scanner(System.in);
-		int n=in.nextInt(); //배열의 크기 받기
-		int m=in.nextInt();
-		int[][] arr= new int[n][m];
-		for(int i = 0; i < n; i++) { //배열 초기화
-			for(int j = 0; j < m; j++) {
-				arr[i][j] = 0; 
-			}
-		}
-		for(int i=0;i<2;i++) { //값 넣기
+	public static void main(String[] args) throws NumberFormatException, IOException{
+		BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st= new StringTokenizer(br.readLine(), " ");
+		int n=Integer.parseInt(st.nextToken());
+		int m=Integer.parseInt(st.nextToken());
+		int [][] arr =new int[n][m];
+		for(int i=0;i<2;i++) { // 두 행렬 입력
 			for(int j=0;j<n;j++) {
+				st=new StringTokenizer(br.readLine(), " ");
 				for(int k=0;k<m;k++) {
-					arr[j][k]+=in.nextInt();
+					arr[j][k]+=Integer.parseInt(st.nextToken());
 				}
 			}
 		}
-		in.close();
-		for(int j=0;j<n;j++) { //출력
-			for(int k=0;k<m;k++) {
-				System.out.print(arr[j][k]+" ");
+		StringBuilder sb=new StringBuilder();
+		for(int i=0;i<n;i++) { //출력
+			for(int j=0;j<m;j++) {
+				sb.append(arr[i][j]).append(' ');
 			}
-			System.out.println();
+			sb.append('\n');
 		}
+		System.out.println(sb);
 	}
-} 
+}
