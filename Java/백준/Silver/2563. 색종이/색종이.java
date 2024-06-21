@@ -1,32 +1,37 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-public class Main {
-	public static void main(String[] args) {
-		Scanner in= new Scanner(System.in);
-		
-		boolean[][] paper=new boolean[100][100];
-		for(int i=0;i<100;i++) { //도화지 배열 false로 초기화
+class Main{
+	public static void main(String[] args) throws NumberFormatException, IOException  {
+		BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb=new StringBuilder();
+		StringTokenizer st;
+		int [][] paper=new int[100][100];
+		for(int i=0;i<100;i++) {
 			for(int j=0;j<100;j++) {
-				paper[i][j]=false;
+				paper[i][j]=0;
 			}
 		}
-		
-		int n=in.nextInt();
-		for(int i=0;i<n;i++) { //검은색 색종이가 있는 위치를 true으로 만듬
-			int x=in.nextInt();
-			int y=in.nextInt();
-			for(int j=x;j<x+10;j++) {
-				for(int k=y;k<y+10;k++) {
-					paper[j][k]=true;
+		int n=Integer.parseInt(br.readLine());
+		for(int i=0;i<n;i++) {
+			String[] str=br.readLine().split(" ");
+			int a=Integer.parseInt(str[0]);
+			int b=Integer.parseInt(str[1]);
+			for(int x=a;x<10+a;x++) {
+				for(int y=b;y<10+b;y++) {
+					paper[x][y]=1;
 				}
 			}
+			
 		}
-		int area=0;
-		for(int i=0;i<100;i++) { //true인 부분 찾기
+		int sum=0;
+		for(int i=0;i<100;i++) {
 			for(int j=0;j<100;j++) {
-				if (paper[i][j]==true) area++;
+				sum+=paper[i][j];
 			}
 		}
-		System.out.println(area);
+		System.out.println(sum);
 	}
-} 
+}
