@@ -6,6 +6,7 @@ import java.util.LinkedList;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br =new BufferedReader(new InputStreamReader(System.in)); 
+		StringBuilder sb=new StringBuilder();
 		int n= Integer.parseInt(br.readLine());
 		int[] nums=new int[8001];
 		int max=-4000;
@@ -46,10 +47,11 @@ public class Main {
 			}
 		}
 		//출력
-		System.out.println(Math.round(sum/(double)n));
-		System.out.println(mid);
-		if(list.size()==1) System.out.println(list.peek());
-		else System.out.println(list.get(1));
-		System.out.println(max-min);
+		sb.append(Math.round(sum/(double)n)).append('\n');
+		sb.append(mid).append('\n');
+		if(list.size()==1) sb.append(list.peek()).append('\n');
+		else sb.append(list.get(1)).append('\n');
+		sb.append(max-min);
+		System.out.println(sb);
 	}
 }
