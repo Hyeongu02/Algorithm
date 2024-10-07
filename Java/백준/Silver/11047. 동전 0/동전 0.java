@@ -4,7 +4,6 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-	static int answer=0;
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -20,15 +19,12 @@ public class Main {
 			count++;
 		}
 		
-		for(int j=count-1;j>=0;j--) {
-			k=check(arr[j],k);
+		int answer=0;
+		for(int j=count-1;j>=0;j--) {	
+			answer+=k/arr[j];
+			k%=arr[j];
 			if(k==0)break;
 		}
 		System.out.println(answer);
-	}
-	
-	public static int check(int arr, int k){
-		answer+=k/arr;
-		return k%arr;
 	}
 }
