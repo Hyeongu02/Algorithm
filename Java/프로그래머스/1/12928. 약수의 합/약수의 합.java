@@ -10,9 +10,4 @@ class Solution {
         if(n%Math.sqrt(n)==0) answer+=Math.sqrt(n);
         return answer;
     }
-    
-    public static void main(String[] args) {
-        Solution c = new Solution();
-        System.out.println(c.solution(12));
-    }
 }
