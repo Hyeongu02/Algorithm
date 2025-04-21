@@ -1,11 +1,13 @@
+import java.util.*;
 class Solution {
     public int solution(int n) {
-		int sum=0;
-		for(int i=1;i<=n;i++) {
-			if(n%i==0) {
-				sum +=i;
-			}
-		}
-		return sum;
+        int answer = 0;
+        for(int i=1;i<Math.sqrt(n);i++){
+            if(n%i==0){
+                answer+=i+n/i;
+            }
+        }
+        if(n%Math.sqrt(n)==0) answer+=Math.sqrt(n);
+        return answer;
     }
 }
