@@ -1,23 +1,28 @@
-import java.util.Scanner;
+import java.io.*;
 
 public class Main {
-	public static void main(String[] args) {
-		Scanner in =new Scanner(System.in);
-		int n=in.nextInt();
-		in.nextLine();
-		for(int i=0;i<n;i++) {
-			int sum=0;
-			int count=1;
-			String str=in.nextLine();
-			for(int j=0;j<str.length();j++) {
-				if(str.charAt(j)=='O') {
-					sum+=count++;
-				}
-				else if(str.charAt(j)=='X') {
-					count=1;
-				}
-			}
-			System.out.println(sum);
-		}
-	}
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int n=Integer.parseInt(br.readLine());
+        String input=null;
+        int count=0;
+        int sum=0;
+        for(int i=0;i<n;i++){
+            input=br.readLine();
+            for(char x:input.toCharArray()){
+                if(x=='O'){
+                    count++;
+                    sum+=count;
+                }else{
+                    count=0;
+                }
+            }
+            bw.append(sum+"\n");
+            count=0;
+            sum=0;
+        }
+        bw.flush();
+        bw.close();
+    }
 }
