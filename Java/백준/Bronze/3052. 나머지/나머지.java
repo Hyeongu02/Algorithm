@@ -1,18 +1,15 @@
-import java.util.Scanner;
-
-public class Main {
-	public static void main(String[] args) {
-		Scanner in= new Scanner(System.in);
-		int[] arr=new int[42];
-		int n=0, count=0;
-		for(int i=0;i<10;i++) {
-			n=in.nextInt();
-			arr[n%42]++;
-		}
-		in.close();
-		for(int i=0;i<42;i++) {
-			if (arr[i]>0) count++;
-		}
-		System.out.print(count);
-	}
-} 
+import java.io.*;
+public class Main{
+    public static void main(String[] args) throws IOException{
+        int[] answer = new int[42];
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        for(int i=0; i<10;i++){
+            answer[Integer.parseInt(br.readLine())%42]++;
+        }
+        int count=0;
+        for(int x: answer){
+            if(x!=0) count++;
+        }
+        System.out.print(count);
+    }
+}
