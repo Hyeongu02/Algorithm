@@ -1,20 +1,19 @@
-import java.util.Scanner;
-
-public class Main {
-	public static void main(String[] args) {
-		Scanner in =new Scanner(System.in);
-		int t=in.nextInt();
-		in.nextLine();
-		for(int i=0;i<t;i++) {
-			String s=in.nextLine();
-			int r=s.charAt(0)-'0';
-			s=s.substring(2);
-			for(int j=0;j<s.length();j++) {
-				for(int k=0;k<r;k++) {
-					System.out.print(s.charAt(j));
-				}
-			}
-			System.out.println();
-		}
-	}
+import java.io.*;
+public class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        String[] input = null;
+        int n=Integer.parseInt(br.readLine());
+        for(int i=0; i<n;i++){
+            input = br.readLine().split(" ");
+            for(int j=0;j<input[1].length();j++){
+                for(int k=0; k<Integer.parseInt(input[0]);k++){
+                    bw.append(input[1].charAt(j));
+                }
+            }
+            bw.append("\n");
+        }
+        bw.flush();
+    }
 }
