@@ -52,6 +52,6 @@ public class Main {
 		if(list.size()==1) sb.append(list.peek()).append('\n');
 		else sb.append(list.get(1)).append('\n');
 		sb.append(max-min);
-		System.out.println(sb);
+		System.out.print(sb);
 	}
 }
