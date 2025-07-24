@@ -1,23 +1,21 @@
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
+ 
 public class Main {
-	public static void main(String[] args){
-		Scanner in =new Scanner(System.in);
-		int x=in.nextInt();
-		int t=1;
-		int count=0;
-		while(true) {
-			if(x<=t+count) {
-				if(t%2==1) {
-					System.out.println((t+1-(x-count))+"/"+(x-count));
-					break;
-				}else {
-					System.out.println((x-count)+"/"+(t+1-(x-count)));
-					break;
-				}
-			}else {
-				count+=t;
-				t++;
-			}
-		}
+ 
+	public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        int x = Integer.parseInt(br.readLine());
+        int max= 1;
+        while(x>(max*(max+1))/2){
+            max++;
+        }
+        
+        if(max%2==0){
+            System.out.println(x-((max-1)*max)/2+"/"+(max-(x-((max-1)*max)/2)+1));
+        }else{
+            System.out.println((max-(x-((max-1)*max)/2)+1)+"/"+(x-((max-1)*max)/2));
+        }
 	}
 }
