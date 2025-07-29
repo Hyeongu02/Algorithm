@@ -1,22 +1,24 @@
 import java.io.*;
-import java.util.*;
 
 public class Main{
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        br.readLine();
+        int[] num = new int[Integer.parseInt(br.readLine())];
         String[] arr = br.readLine().split(" ");
-        int x = Integer.parseInt(br.readLine());
-        HashSet<Integer> set = new  HashSet<>();
-        int count=0;
-        int tmp=0;
-        for(String arrItem : arr){
-            tmp=Integer.parseInt(arrItem);
-            if(set.contains(x-tmp)){
-                count++;
-            }
-            set.add(tmp);
+        for(int i=0; i<num.length; i++){
+            num[i] = Integer.parseInt(arr[i]);
         }
-        System.out.print(count);
+        int x = Integer.parseInt(br.readLine());
+        int[] sumNum = new int[x+1];
+        int answer=0;
+        for(int i=0; i<num.length;i++){
+            if(num[i]<x){
+                if(sumNum[x-num[i]]==1){
+                    answer++;
+                }
+                sumNum[num[i]]=1;
+            }
+        }
+        System.out.println(answer);
     }
 }
