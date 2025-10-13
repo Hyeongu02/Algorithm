@@ -6,29 +6,23 @@ public class Main{
     public static void main(String[]args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         char[] input = br.readLine().toCharArray();
-        boolean flag = false;
+        boolean flag = true;
         Deque<Character> stack = new ArrayDeque<>();
         int answer = 0;
         for(char x : input){
-            if(stack.isEmpty()){
+            if(x=='('){
                 stack.push(x);
-                flag=false;
+                flag=true;
             }else{
-                if(x==')'){
-                    if(stack.peek()=='('&&!flag){
-                        flag=true;
-                        stack.pop();
-                        answer+=stack.size();
-                    }else{
-                        stack.pop();
-                        answer++;
-                    }
+                stack.pop();
+                if(flag){
+                    answer+=stack.size();
                 }else{
-                    stack.push(x);
-                    flag=false;
+                    answer++;
                 }
+                flag=false;
             }
         }
-        System.out.println(answer);
+        System.out.println(answer); 
     }
 }
