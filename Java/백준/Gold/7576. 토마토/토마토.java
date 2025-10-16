@@ -1,51 +1,62 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class Main {
-    static int[] dirX = {1,0,-1,0};
-    static int[] dirY = {0,1,0,-1};
-    
-    public static void main(String[] args) throws IOException {
+    static int[] dr = {-1, 1, 0, 0};
+    static int[] dc = {0, 0, -1, 1};
+
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] input = br.readLine().split(" ");
-        int M = Integer.parseInt(input[0]);
-        int N = Integer.parseInt(input[1]);
-        int[][] board = new int[N][M];
-        int[][] day =new int[N][M];
-        Deque<int[]> Q = new ArrayDeque<>();
-        int countZ = 0;
-        int countN = 0;
-        int lastDay = 0;
-        for(int i=0; i<N;i++){
-            String[] boardLine = br.readLine().split(" ");
-            for(int j=0; j<M;j++){
-                if(boardLine[j].equals("1")) {
-                    Q.offer(new int[]{i,j});
-                }if(boardLine[j].equals("0")) {
-                    countZ++;
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int M = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken()); 
+
+        int[][] box = new int[N][M];
+        int[][] days = new int[N][M];
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < M; j++) {
+                box[i][j] = Integer.parseInt(st.nextToken());
+                if (box[i][j] == 1) {
+                    days[i][j] = 0; 
+                } else {
+                    days[i][j] = -1; 
                 }
-                board[i][j]=Integer.parseInt(boardLine[j]);
+                if (box[i][j] == -1) {
+                    days[i][j] = -2; 
+                }
             }
         }
-        while (!Q.isEmpty()) {
-            int[] cur = Q.poll();
-            int curX = cur[0];
-            int curY = cur[1];
-            for(int i=0;i<4;i++){
-                int dX= curX + dirX[i];
-                int dY= curY + dirY[i];
-                if(dX<0 || dX>=N || dY<0 || dY>=M) continue;
-                if(day[dX][dY]>0 || board[dX][dY]==-1 || board[dX][dY]==1) continue;
-                countN++;
-                day[dX][dY]=day[curX][curY]+1;
-                Q.offer(new int[]{dX,dY});
-                lastDay=day[curX][curY]+1;
+        ArrayDeque<int[]> q = new ArrayDeque<>();
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                if (box[i][j] == 1) q.add(new int[]{i, j});
             }
         }
-        if(countZ==countN){
-            System.out.print(lastDay);
-        }else {
-            System.out.print(-1);
+
+        int maxDay = 0;
+        while (!q.isEmpty()) {
+            int[] cur = q.poll();
+            int r = cur[0], c = cur[1];
+            for (int k = 0; k < 4; k++) {
+                int nr = r + dr[k];
+                int nc = c + dc[k];
+                if (nr < 0 || nr >= N || nc < 0 || nc >= M) continue;
+                if (box[nr][nc] != 0) continue;
+                if (days[nr][nc] != -1) continue;
+                days[nr][nc] = days[r][c] + 1;
+                maxDay = Math.max(maxDay, days[nr][nc]);
+                q.add(new int[]{nr, nc});
+            }
         }
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                if (box[i][j] == 0 && days[i][j] == -1) {
+                    System.out.println(-1);
+                    return;
+                }
+            }
+        }
+        System.out.println(maxDay);
     }
 }
