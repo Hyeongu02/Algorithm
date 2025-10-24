@@ -1,50 +1,63 @@
 import java.io.*;
 import java.util.*;
 
-public class Main{
-    static int[] dirX = {0,1,0,-1};
-    static int[] dirY = {1,0,-1,0};
-    
-    public static void main(String[] args) throws IOException{
+public class Main {
+    static int[] dirX = {0, 1, 0, -1};
+    static int[] dirY = {1, 0, -1, 0};
+    static int M, N;
+    static int[][] board;
+    static boolean[][] visit;
+
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        
+
         int T = Integer.parseInt(br.readLine());
-        for(int i=0; i<T; i++){
+
+        for (int i = 0; i < T; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-            int M = Integer.parseInt(st.nextToken());
-            int N = Integer.parseInt(st.nextToken());
+            M = Integer.parseInt(st.nextToken());
+            N = Integer.parseInt(st.nextToken());
             int K = Integer.parseInt(st.nextToken());
-            int count = 0;
-            int[][] board = new int[M][N];
-            boolean[][] visit = new boolean[M][N];
-            Deque<int[]> Q = new ArrayDeque<>();
-            for(int j=0; j<K;j++){
+            
+            board = new int[M][N];
+            visit = new boolean[M][N];
+
+            for (int j = 0; j < K; j++) {
                 st = new StringTokenizer(br.readLine(), " ");
-                board[Integer.parseInt(st.nextToken())][Integer.parseInt(st.nextToken())]=1;
+                int x = Integer.parseInt(st.nextToken());
+                int y = Integer.parseInt(st.nextToken());
+                board[x][y] = 1;
             }
-            for(int j=0; j<M;j++){
-                for(int k=0; k<N;k++){
-                    if(board[j][k]==1&&!visit[j][k]){
-                        Q.offer(new int[]{j,k});
-                        visit[j][k]=true;
-                        while (!Q.isEmpty()) {
-                            int[] cur = Q.poll();
-                            for(int m=0; m<4;m++){
-                                int curX = dirX[m]+ cur[0];
-                                int curY = dirY[m]+ cur[1];
-                                if(curX<0||curY<0||curX>=M||curY>=N)continue;
-                                if(board[curX][curY]==0||visit[curX][curY]) continue;
-                                visit[curX][curY]=true;
-                                Q.offer(new int[]{curX,curY});
-                            }
-                        }
+
+            int count = 0;
+
+            for (int j = 0; j < M; j++) {
+                for (int k = 0; k < N; k++) {
+                    if (board[j][k] == 1 && !visit[j][k]) {
+                        dfs(j, k);
                         count++;
                     }
                 }
             }
-            bw.append(count+"\n");
+
+            bw.append(count + "\n");
         }
+
         bw.flush();
+    }
+
+    static void dfs(int x, int y) {
+        visit[x][y] = true;
+
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dirX[i];
+            int ny = y + dirY[i];
+
+            if (nx < 0 || ny < 0 || nx >= M || ny >= N) continue;
+            if (board[nx][ny] == 0 || visit[nx][ny]) continue;
+
+            dfs(nx, ny);
+        }
     }
 }
