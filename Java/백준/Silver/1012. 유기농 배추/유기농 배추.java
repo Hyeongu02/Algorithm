@@ -1,50 +1,52 @@
 import java.io.*;
 import java.util.*;
 
-public class Main{
-    static int[] dirX = {0,1,0,-1};
-    static int[] dirY = {1,0,-1,0};
-    
-    public static void main(String[] args) throws IOException{
+public class Main {
+    static final int[] dx = {0, 1, 0, -1};
+    static final int[] dy = {1, 0, -1, 0};
+    static int M, N;
+    static int[][] board;
+
+    public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        
+        StringBuilder sb = new StringBuilder();
         int T = Integer.parseInt(br.readLine());
-        for(int i=0; i<T; i++){
-            StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-            int M = Integer.parseInt(st.nextToken());
-            int N = Integer.parseInt(st.nextToken());
+        for (int t = 0; t < T; t++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            M = Integer.parseInt(st.nextToken());
+            N = Integer.parseInt(st.nextToken());
             int K = Integer.parseInt(st.nextToken());
-            int count = 0;
-            int[][] board = new int[M][N];
-            boolean[][] visit = new boolean[M][N];
-            Deque<int[]> Q = new ArrayDeque<>();
-            for(int j=0; j<K;j++){
-                st = new StringTokenizer(br.readLine(), " ");
-                board[Integer.parseInt(st.nextToken())][Integer.parseInt(st.nextToken())]=1;
+            board = new int[M][N];
+            while (K-- > 0) {
+                st = new StringTokenizer(br.readLine());
+                board[Integer.parseInt(st.nextToken())][Integer.parseInt(st.nextToken())] = 1;
             }
-            for(int j=0; j<M;j++){
-                for(int k=0; k<N;k++){
-                    if(board[j][k]==1&&!visit[j][k]){
-                        Q.offer(new int[]{j,k});
-                        visit[j][k]=true;
-                        while (!Q.isEmpty()) {
-                            int[] cur = Q.poll();
-                            for(int m=0; m<4;m++){
-                                int curX = dirX[m]+ cur[0];
-                                int curY = dirY[m]+ cur[1];
-                                if(curX<0||curY<0||curX>=M||curY>=N)continue;
-                                if(board[curX][curY]==0||visit[curX][curY]) continue;
-                                visit[curX][curY]=true;
-                                Q.offer(new int[]{curX,curY});
+            int worms = 0;
+            ArrayDeque<Integer> q = new ArrayDeque<>();
+            for (int i = 0; i < M; i++) {
+                for (int j = 0; j < N; j++) {
+                    if (board[i][j] == 1) {
+                        worms++;
+                        board[i][j] = 0;
+                        q.offer(i * N + j);
+                        while (!q.isEmpty()) {
+                            int cur = q.poll();
+                            int x = cur / N;
+                            int y = cur % N;
+                            for (int d = 0; d < 4; d++) {
+                                int nx = x + dx[d];
+                                int ny = y + dy[d];
+                                if (nx < 0 || ny < 0 || nx >= M || ny >= N) continue;
+                                if (board[nx][ny] == 0) continue;
+                                board[nx][ny] = 0;
+                                q.offer(nx * N + ny);
                             }
                         }
-                        count++;
                     }
                 }
             }
-            bw.append(count+"\n");
+            sb.append(worms).append('\n');
         }
-        bw.flush();
+        System.out.print(sb);
     }
 }
